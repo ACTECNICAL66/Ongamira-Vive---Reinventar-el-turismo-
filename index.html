@@ -1,0 +1,1803 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ongamira Vive · Propuesta Completa · ONIET 2026</title>
+    <meta name="description" content="Proyecto turístico innovador y sustentable para el Valle de Ongamira, Córdoba. Presentado en la competencia Reinventar el Turismo de ONIET." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ===== RESET & VARIABLES ===== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #1e3c5c;
+            --color-primary-light: #2a5a7a;
+            --color-secondary: #d4a373;
+            --color-secondary-light: #f0d5b0;
+            --color-accent: #c7a05b;
+            --color-dark: #1e2a3a;
+            --color-text: #2c3e50;
+            --color-text-light: #5a6e7e;
+            --color-bg: #faf8f5;
+            --color-white: #ffffff;
+            --color-off-white: #f6f3ee;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+            --radius: 12px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== HEADER ===== */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: var(--shadow-sm);
+            padding: 0 24px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition);
+            border-bottom: 2px solid rgba(212, 163, 115, 0.2);
+        }
+
+        .main-header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow-md);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+            box-shadow: 0 4px 10px rgba(30, 60, 92, 0.3);
+            position: relative;
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid var(--color-secondary);
+            opacity: 0.4;
+        }
+
+        .site-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            letter-spacing: -0.5px;
+        }
+        .site-title span {
+            color: var(--color-secondary);
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .main-nav a {
+            display: block;
+            padding: 8px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-text);
+            transition: var(--transition);
+            position: relative;
+            letter-spacing: 0.3px;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            background: var(--color-primary);
+            color: #fff;
+        }
+
+        .main-nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--color-secondary);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        .menu-toggle:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            background: linear-gradient(rgba(15, 40, 64, 0.72), rgba(15, 40, 64, 0.72)), url('https://prensa.cba.gov.ar/wp-content/uploads/2023/02/Vista-del-Colchiqui-desde-el-Cerro-Calavera-en-Las-Grutas-de-Ongamira.-1.jpg') center / cover no-repeat, linear-gradient(145deg, var(--color-primary) 0%, #0f2840 100%);
+            background-attachment: scroll, fixed, scroll;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(212, 163, 115, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 80% 70%, rgba(199, 160, 91, 0.10) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C300,100 600,20 900,80 L1200,0 L1200,120 L0,120 Z' fill='%23faf8f5'/%3E%3C/svg%3E") no-repeat bottom;
+            background-size: cover;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(4px);
+            padding: 6px 20px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: 24px;
+            color: var(--color-secondary-light);
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            max-width: 900px;
+            position: relative;
+        }
+        .hero h1 span {
+            color: var(--color-secondary);
+        }
+        .hero h1::after {
+            content: '✦';
+            font-size: 2rem;
+            color: var(--color-secondary);
+            margin-left: 12px;
+            opacity: 0.6;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            max-width: 680px;
+            margin-bottom: 36px;
+            opacity: 0.9;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .hero .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            background: var(--color-secondary);
+            color: var(--color-primary);
+            box-shadow: 0 4px 14px rgba(212, 163, 115, 0.35);
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(212, 163, 115, 0.45);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: none;
+        }
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 140px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: bounceDown 2s infinite;
+        }
+        .scroll-indicator i {
+            font-size: 1.2rem;
+        }
+
+        @keyframes bounceDown {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(8px);
+            }
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+            color: var(--color-primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
+            border-radius: 4px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            max-width: 700px;
+            margin: 24px auto 48px;
+            line-height: 1.6;
+        }
+
+        .section-light {
+            background: var(--color-off-white);
+        }
+
+        .section-dark {
+            background: var(--color-primary);
+            color: #fff;
+        }
+        .section-dark .section-title {
+            color: #fff;
+        }
+        .section-dark .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .section-dark .section-title::after {
+            background: linear-gradient(90deg, var(--color-secondary), #fff);
+        }
+
+        /* ===== CARDS ===== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+        }
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card .card-icon {
+            font-size: 2.2rem;
+            color: var(--color-secondary);
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        .card h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--color-primary);
+        }
+
+        .card p {
+            color: var(--color-text-light);
+            font-size: 0.98rem;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        /* ===== STATS ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 30px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            padding: 24px 16px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: scale(1.02);
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        /* ===== TESTIMONIAL ===== */
+        .testimonial {
+            background: var(--color-white);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow-sm);
+            border-left: 6px solid var(--color-secondary);
+            margin: 24px 0 0;
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '\201C';
+            font-family: var(--font-display);
+            font-size: 4rem;
+            color: var(--color-secondary);
+            opacity: 0.3;
+            position: absolute;
+            top: 12px;
+            left: 20px;
+            line-height: 1;
+        }
+
+        .testimonial p {
+            font-size: 1.1rem;
+            font-style: italic;
+            padding-left: 40px;
+            color: var(--color-text);
+        }
+
+        .testimonial cite {
+            display: block;
+            text-align: right;
+            margin-top: 16px;
+            font-weight: 600;
+            font-style: normal;
+            color: var(--color-primary);
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            aspect-ratio: 1 / 0.9;
+            background: #e0d6c8;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.04);
+        }
+
+        .gallery-item .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(30, 60, 92, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+            color: #fff;
+            font-weight: 600;
+            padding: 16px;
+            text-align: center;
+            backdrop-filter: blur(2px);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* ===== MAP ===== */
+        .map-container {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-top: 16px;
+            position: relative;
+            padding-top: 45%;
+        }
+
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* ===== BUDGET TABLE ===== */
+        .budget-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            margin-top: 20px;
+        }
+
+        .budget-table th {
+            background: var(--color-primary);
+            color: #fff;
+            padding: 14px 20px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .budget-table td {
+            padding: 12px 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .budget-table tr:last-child td {
+            border-bottom: none;
+            font-weight: 700;
+            background: var(--color-off-white);
+        }
+
+        .budget-table tr:hover td {
+            background: #faf8f5;
+        }
+
+        /* ===== ODS ===== */
+        .ods-content {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            background: #fff;
+            padding: 40px 48px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .ods-icon {
+            flex-shrink: 0;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-weight: 700;
+            box-shadow: 0 8px 24px rgba(30, 60, 92, 0.3);
+            position: relative;
+        }
+
+        .ods-icon::after {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 2px dashed var(--color-secondary);
+            opacity: 0.4;
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .ods-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            margin-bottom: 8px;
+        }
+
+        .ods-content h3 a {
+            color: var(--color-primary);
+            text-decoration: underline;
+            text-decoration-color: var(--color-secondary);
+            text-underline-offset: 4px;
+        }
+
+        .ods-content h3 a:hover {
+            color: var(--color-primary-light);
+        }
+
+        .ods-content p {
+            color: var(--color-text-light);
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            background: #fff;
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .contact-item i {
+            font-size: 1.4rem;
+            color: var(--color-secondary);
+            width: 40px;
+            text-align: center;
+        }
+
+        .contact-item p {
+            margin: 0;
+            font-size: 0.98rem;
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            color: #fff;
+            border: none;
+            font-size: 1.4rem;
+            box-shadow: var(--shadow-md);
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: var(--color-secondary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ===== FOOTER ===== */
+        .main-footer {
+            background: var(--color-dark);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 56px 0 24px;
+            position: relative;
+        }
+
+        .main-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-secondary), var(--color-accent), var(--color-secondary));
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 32px;
+        }
+
+        .footer-grid h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+
+        .footer-grid ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-grid ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-grid ul a {
+            transition: var(--transition);
+        }
+        .footer-grid ul a:hover {
+            color: var(--color-secondary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 24px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ===== VALLE SOURCES ===== */
+        .valle-sources {
+            max-width: 1200px;
+            margin: 28px auto 0;
+            padding: 16px 20px;
+            background: var(--color-off-white);
+            border-radius: var(--radius);
+            border: 1px dashed rgba(212, 163, 115, 0.5);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        .valle-sources a {
+            color: var(--color-primary);
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-color: var(--color-secondary);
+            text-underline-offset: 3px;
+        }
+
+        .valle-sources a:hover {
+            color: var(--color-primary-light);
+        }
+
+        /* ===== HERO CREDIT ===== */
+        .hero-credit {
+            position: absolute;
+            bottom: 12px;
+            right: 16px;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.55);
+            z-index: 5;
+            pointer-events: none;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .ods-content {
+                flex-direction: column;
+                text-align: center;
+                padding: 32px 24px;
+            }
+            .ods-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 1.8rem;
+            }
+            .budget-table {
+                font-size: 0.9rem;
+            }
+            .budget-table th,
+            .budget-table td {
+                padding: 10px 14px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                background-attachment: scroll;
+            }
+
+            .main-header {
+                height: 64px;
+                padding: 0 16px;
+            }
+
+            .site-title {
+                font-size: 1.2rem;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .main-nav ul {
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(12px);
+                flex-direction: column;
+                padding: 16px 24px 24px;
+                gap: 4px;
+                box-shadow: var(--shadow-md);
+                display: none;
+                border-top: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .main-nav ul.active {
+                display: flex;
+            }
+
+            .main-nav a {
+                padding: 12px 16px;
+                border-radius: 8px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero {
+                padding: 100px 16px 60px;
+                min-height: 90vh;
+            }
+
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+
+            section {
+                padding: 56px 0;
+            }
+
+            .testimonial {
+                padding: 24px;
+            }
+            .testimonial p {
+                padding-left: 0;
+            }
+            .testimonial::before {
+                display: none;
+            }
+
+            .contact-info {
+                padding: 24px;
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 44px;
+                height: 44px;
+                font-size: 1.2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .budget-table {
+                font-size: 0.75rem;
+            }
+            .budget-table th,
+            .budget-table td {
+                padding: 8px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .btn {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+            .stat-number {
+                font-size: 2rem;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="main-header" role="banner" aria-label="Encabezado principal">
+        <div class="logo-container">
+            <div class="logo-icon" aria-hidden="true">OV</div>
+            <div class="site-title">Ongamira <span>Vive</span></div>
+        </div>
+        <nav class="main-nav" role="navigation" aria-label="Menú principal">
+            <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul>
+                <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                <li><a href="#valle" class="nav-link">El Valle</a></li>
+                <li><a href="#potencial" class="nav-link">Potencial</a></li>
+                <li><a href="#estrategia" class="nav-link">Estrategia</a></li>
+                <li><a href="#experiencias" class="nav-link">Experiencias</a></li>
+                <li><a href="#innovacion" class="nav-link">Innovación</a></li>
+                <li><a href="#comunidad" class="nav-link">Comunidad</a></li>
+                <li><a href="#ods-11" class="nav-link">ODS 11</a></li>
+                <li><a href="#viabilidad" class="nav-link">Viabilidad</a></li>
+                <li><a href="#equipo" class="nav-link">Equipo</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section id="inicio" class="hero">
+        <div class="hero-badge"><i class="fas fa-leaf" style="margin-right: 8px;"></i> Propuesta para ONIET · Reinventar el Turismo 2026</div>
+        <h1>Ongamira <span>Vive</span></h1>
+        <p>Un modelo de turismo ancestral y sustentable para el futuro de Córdoba</p>
+        <div class="btn-group">
+            <a href="#potencial" class="btn"><i class="fas fa-compass"></i> Explorar la Propuesta</a>
+            <a href="#contacto" class="btn btn-outline"><i class="fas fa-envelope"></i> Contacto</a>
+        </div>
+        <div class="hero-credit">Foto: Prensa Gobierno de Córdoba · Vista del Cerro Colchiquí desde el Cerro Calavera, Ongamira</div>
+        <div class="scroll-indicator" aria-hidden="true">
+            <span>Desplázate</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- ===== DESCUBRÍ EL VALLE (Contenido educativo: ubicación, flora, fauna, patrimonio) ===== -->
+    <section id="valle">
+        <div class="container fade-up">
+            <h2 class="section-title">Descubrí el Valle de Ongamira</h2>
+            <p class="section-subtitle">Geología, flora, fauna y patrimonio arqueológico: el archivo vivo del norte del Valle de Punilla.</p>
+            <div class="section-content">
+                <div style="background: #fff; padding: 32px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-left: 6px solid var(--color-secondary);">
+                    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                        <div style="width: 56px; height: 56px; flex-shrink: 0; background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.4rem; box-shadow: 0 4px 10px rgba(30, 60, 92, 0.3);"><i class="fas fa-map-marker-alt"></i></div>
+                        <h3 style="font-family: var(--font-display); color: var(--color-primary); font-size: 1.5rem; margin: 0;">¿Dónde está Ongamira?</h3>
+                    </div>
+                    <p>Ongamira es un pequeño paraje ubicado al <strong>norte del Valle de Punilla</strong>, en el <strong>departamento Ischilín, provincia de Córdoba</strong>. Se encuentra aproximadamente a 120 km de la ciudad de Córdoba y a unos 25 km de Capilla del Monte. El acceso desde la <strong>Ruta Nacional 38</strong> se realiza mediante un camino de aproximadamente <strong>17 km</strong> hacia el valle.</p>
+                    <p style="margin-top: 12px;">El paisaje se caracteriza por sus <strong>formaciones de arenisca rojiza</strong>, cerros, quebradas, aleros naturales, pequeñas cascadas y vegetación serrana. La erosión producida durante millones de años por el agua y el viento dio origen a muchas de las formas rocosas que hoy identifican a Ongamira. El contraste entre las rocas rojizas y la vegetación constituye uno de los principales valores paisajísticos de la región.</p>
+                    <ul style="margin-top: 20px; list-style: none; display: flex; flex-wrap: wrap; gap: 12px;">
+                        <li style="background: var(--color-off-white); padding: 8px 18px; border-radius: 40px; font-size: 0.92rem; font-weight: 600; color: var(--color-primary);"><i class="fas fa-road" style="color: var(--color-secondary); margin-right: 8px;"></i>120 km de la ciudad de Córdoba</li>
+                        <li style="background: var(--color-off-white); padding: 8px 18px; border-radius: 40px; font-size: 0.92rem; font-weight: 600; color: var(--color-primary);"><i class="fas fa-road" style="color: var(--color-secondary); margin-right: 8px;"></i>25 km de Capilla del Monte</li>
+                        <li style="background: var(--color-off-white); padding: 8px 18px; border-radius: 40px; font-size: 0.92rem; font-weight: 600; color: var(--color-primary);"><i class="fas fa-road" style="color: var(--color-secondary); margin-right: 8px;"></i>17 km de camino desde la RN 38</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section-content" style="margin-top: 40px;">
+                <h3 style="font-family: var(--font-display); color: var(--color-primary); font-size: 1.6rem; margin-bottom: 6px;"><i class="fas fa-seedling" style="color: var(--color-secondary); margin-right: 10px;"></i>Flora del Valle</h3>
+                <p class="section-subtitle" style="text-align: left; max-width: 100%; margin-bottom: 20px;">La vegetación forma parte del ambiente serrano cordobés, con adaptaciones a condiciones relativamente secas, al relieve accidentado y a las variaciones de altitud.</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
+                    <div style="background: #fff; padding: 22px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-secondary);">
+                        <h4 style="font-family: var(--font-display); color: var(--color-primary); margin-bottom: 4px;">Quebracho colorado serrano</h4>
+                        <p style="font-size: 0.88rem; color: var(--color-text-light); font-style: italic;">Schinopsis marginata</p>
+                        <p style="margin-top: 8px; font-size: 0.94rem;">Especie de especial importancia en Ongamira, asociada a antiguas canteras de cuarzo y al uso tradicional medicinal de las plantas.</p>
+                    </div>
+                    <div style="background: #fff; padding: 22px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-secondary);">
+                        <h4 style="font-family: var(--font-display); color: var(--color-primary); margin-bottom: 4px;">Molle</h4>
+                        <p style="font-size: 0.88rem; color: var(--color-text-light); font-style: italic;">Lithraea molleoides</p>
+                        <p style="margin-top: 8px; font-size: 0.94rem;">Árbol característico del monte serrano, presente en sectores protegidos del valle.</p>
+                    </div>
+                    <div style="background: #fff; padding: 22px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-secondary);">
+                        <h4 style="font-family: var(--font-display); color: var(--color-primary); margin-bottom: 4px;">Algarrobo</h4>
+                        <p style="font-size: 0.88rem; color: var(--color-text-light); font-style: italic;">Prosopis spp.</p>
+                        <p style="margin-top: 8px; font-size: 0.94rem;">Sus frutos fueron y son un recurso valioso para las comunidades del valle.</p>
+                    </div>
+                    <div style="background: #fff; padding: 22px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-secondary);">
+                        <h4 style="font-family: var(--font-display); color: var(--color-primary); margin-bottom: 4px;">Coco serrano</h4>
+                        <p style="font-size: 0.88rem; color: var(--color-text-light); font-style: italic;">Zanthoxylum coco</p>
+                        <p style="margin-top: 8px; font-size: 0.94rem;">Especie emblemática de las sierras cordobesas, asociada a sectores de monte bien conservado.</p>
+                    </div>
+                    <div style="background: #fff; padding: 22px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-secondary);">
+                        <h4 style="font-family: var(--font-display); color: var(--color-primary); margin-bottom: 4px;">Tala</h4>
+                        <p style="font-size: 0.88rem; color: var(--color-text-light); font-style: italic;">Celtis tala</p>
+                        <p style="margin-top: 8px; font-size: 0.94rem;">Árbol adaptable que acompaña los ambientes del bosque serrano.</p>
+                    </div>
+                    <div style="background: #fff; padding: 22px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-secondary);">
+                        <h4 style="font-family: var(--font-display); color: var(--color-primary); margin-bottom: 4px;">Chañar</h4>
+                        <p style="font-size: 0.88rem; color: var(--color-text-light); font-style: italic;">Geoffroea decorticans</p>
+                        <p style="margin-top: 8px; font-size: 0.94rem;">Sus frutos se emplean tradicionalmente en preparaciones artesanales regionales.</p>
+                    </div>
+                    <div style="background: #fff; padding: 22px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-secondary);">
+                        <h4 style="font-family: var(--font-display); color: var(--color-primary); margin-bottom: 4px;">Cactus y hierbas</h4>
+                        <p style="font-size: 0.88rem; color: var(--color-text-light); font-style: italic;">Diversas especies</p>
+                        <p style="margin-top: 8px; font-size: 0.94rem;">Plantas herbáceas y cactus adaptados a las zonas rocosas y de mayor exposición solar.</p>
+                    </div>
+                    <div style="background: #fff; padding: 22px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-secondary);">
+                        <h4 style="font-family: var(--font-display); color: var(--color-primary); margin-bottom: 4px;">Monte serrano</h4>
+                        <p style="font-size: 0.88rem; color: var(--color-text-light); font-style: italic;">Arbustos autóctonos</p>
+                        <p style="margin-top: 8px; font-size: 0.94rem;">Arbustos y especies propias del monte serrano completan el mosaico de vegetación del valle.</p>
+                    </div>
+                </div>
+                <div style="margin-top: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                    <div style="background: var(--color-off-white); padding: 24px; border-radius: var(--radius); border: 1px dashed rgba(212, 163, 115, 0.5);">
+                        <h4 style="font-family: var(--font-display); color: var(--color-primary); margin-bottom: 8px;"><i class="fas fa-mountain" style="color: var(--color-secondary); margin-right: 8px;"></i>Una flora condicionada por el relieve</h4>
+                        <p style="font-size: 0.95rem;">La vegetación no se distribuye de manera uniforme: las diferencias de <strong>suelo, humedad, exposición solar y altura</strong> generan distintos ambientes. En sectores protegidos aparecen áreas de bosque y monte, mientras que en zonas rocosas y de mayor exposición predominan arbustos, hierbas y plantas adaptadas a condiciones más rigurosas. La <strong>geología y la vegetación forman un mismo sistema natural</strong>.</p>
+                    </div>
+                    <div style="background: rgba(212, 163, 115, 0.12); padding: 24px; border-radius: var(--radius); border-left: 4px solid var(--color-secondary);">
+                        <h4 style="font-family: var(--font-display); color: var(--color-primary); margin-bottom: 8px;"><i class="fas fa-info-circle" style="color: var(--color-secondary); margin-right: 8px;"></i>Rigor científico</h4>
+                        <p style="font-size: 0.95rem;">Córdoba Turismo identifica al valle como territorio donde existen ejemplares de quebracho colorado y sectores asociados a esta vegetación, junto con antiguas canteras de cuarzo y plantas de uso medicinal tradicional. Las especies aquí listadas son características del <strong>ecosistema serrano cordobés</strong>; se distinguen así de las especies registradas específicamente dentro del valle de Ongamira.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section-content" style="margin-top: 40px;">
+                <h3 style="font-family: var(--font-display); color: var(--color-primary); font-size: 1.6rem; margin-bottom: 6px;"><i class="fas fa-dove" style="color: var(--color-secondary); margin-right: 10px;"></i>Fauna del Valle</h3>
+                <p class="section-subtitle" style="text-align: left; max-width: 100%; margin-bottom: 20px;">La fauna de Ongamira está relacionada con los ambientes serranos y del bosque chaqueño de Córdoba.</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+                    <div style="background: #fff; padding: 28px; border-radius: var(--radius); box-shadow: var(--shadow-sm);">
+                        <h4 style="font-family: var(--font-display); color: var(--color-primary); font-size: 1.2rem; margin-bottom: 14px;"><i class="fas fa-paw" style="color: var(--color-secondary); margin-right: 10px;"></i>Mamíferos</h4>
+                        <ul style="list-style: none;">
+                            <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><i class="fas fa-paw" style="color: var(--color-secondary); margin-right: 10px;"></i><strong>Puma</strong> <em>(Puma concolor)</em></li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><i class="fas fa-paw" style="color: var(--color-secondary); margin-right: 10px;"></i><strong>Corzuela parda</strong> <em>(Mazama gouazoubira)</em></li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><i class="fas fa-paw" style="color: var(--color-secondary); margin-right: 10px;"></i><strong>Zorro gris</strong> <em>(Lycalopex gymnocercus)</em></li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><i class="fas fa-paw" style="color: var(--color-secondary); margin-right: 10px;"></i><strong>Gato montés</strong> <em>(Leopardus geoffroyi)</em></li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><i class="fas fa-paw" style="color: var(--color-secondary); margin-right: 10px;"></i><strong>Zorrino</strong></li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><i class="fas fa-paw" style="color: var(--color-secondary); margin-right: 10px;"></i><strong>Hurones</strong></li>
+                            <li style="padding: 8px 0;"><i class="fas fa-paw" style="color: var(--color-secondary); margin-right: 10px;"></i>Diversas especies de <strong>pequeños mamíferos y roedores</strong></li>
+                        </ul>
+                    </div>
+                    <div style="background: #fff; padding: 28px; border-radius: var(--radius); box-shadow: var(--shadow-sm);">
+                        <h4 style="font-family: var(--font-display); color: var(--color-primary); font-size: 1.2rem; margin-bottom: 14px;"><i class="fas fa-feather-alt" style="color: var(--color-secondary); margin-right: 10px;"></i>Aves</h4>
+                        <ul style="list-style: none;">
+                            <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><i class="fas fa-feather-alt" style="color: var(--color-secondary); margin-right: 10px;"></i><strong>Cóndor andino</strong> — uno de los atractivos mencionados específicamente para Ongamira</li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><i class="fas fa-feather-alt" style="color: var(--color-secondary); margin-right: 10px;"></i><strong>Águila mora</strong></li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><i class="fas fa-feather-alt" style="color: var(--color-secondary); margin-right: 10px;"></i><strong>Carancho</strong></li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><i class="fas fa-feather-alt" style="color: var(--color-secondary); margin-right: 10px;"></i><strong>Chimango</strong></li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><i class="fas fa-feather-alt" style="color: var(--color-secondary); margin-right: 10px;"></i><strong>Halcón peregrino</strong></li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><i class="fas fa-feather-alt" style="color: var(--color-secondary); margin-right: 10px;"></i><strong>Carpinteros</strong></li>
+                            <li style="padding: 8px 0;"><i class="fas fa-feather-alt" style="color: var(--color-secondary); margin-right: 10px;"></i>Diversas especies de <strong>passeriformes</strong></li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                    <div style="background: var(--color-off-white); padding: 24px; border-radius: var(--radius); border: 1px dashed rgba(212, 163, 115, 0.5);">
+                        <h4 style="font-family: var(--font-display); color: var(--color-primary); margin-bottom: 8px;"><i class="fas fa-link" style="color: var(--color-secondary); margin-right: 8px;"></i>Corredores de bosque nativo</h4>
+                        <p style="font-size: 0.95rem;">La presencia documentada de varias de estas especies en ambientes serranos próximos demuestra la importancia de conservar los corredores de bosque nativo de la región. En la <strong>Reserva Natural de la Defensa La Calera</strong> —dentro del mismo gran sistema serrano cordobés— se han registrado puma, gato montés, corzuela parda, hurón menor, zorrino y peludo, entre otros mamíferos.</p>
+                    </div>
+                    <div style="background: rgba(212, 163, 115, 0.12); padding: 24px; border-radius: var(--radius); border-left: 4px solid var(--color-secondary);">
+                        <h4 style="font-family: var(--font-display); color: var(--color-primary); margin-bottom: 8px;"><i class="fas fa-info-circle" style="color: var(--color-secondary); margin-right: 8px;"></i>Rigor científico</h4>
+                        <p style="font-size: 0.95rem;">No todas estas especies fueron registradas específicamente dentro del valle de Ongamira: la lista reúne especies <strong>características del ecosistema serrano cordobés</strong>, entre las que se destaca el avistaje de cóndores como atractivo mencionado para el valle.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section-content" style="margin-top: 40px;">
+                <h3 style="font-family: var(--font-display); color: var(--color-primary); font-size: 1.6rem; margin-bottom: 6px;"><i class="fas fa-landmark" style="color: var(--color-secondary); margin-right: 10px;"></i>Patrimonio Arqueológico</h3>
+                <p class="section-subtitle" style="text-align: left; max-width: 100%; margin-bottom: 20px;">Un territorio habitado durante miles de años, donde las comunidades humanas aprovecharon los refugios naturales, los recursos vegetales y animales y las características del paisaje serrano.</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+                    <div style="background: #fff; padding: 28px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-primary);">
+                        <h4 style="font-family: var(--font-display); color: var(--color-primary); font-size: 1.2rem; margin-bottom: 12px;"><i class="fas fa-archway" style="color: var(--color-secondary); margin-right: 10px;"></i>Las Cuevas de Ongamira</h4>
+                        <p style="font-size: 0.95rem;">Uno de los principales atractivos naturales y culturales del valle. No se trata únicamente de formaciones geológicas: los <strong>aleros y refugios naturales</strong> formados entre las rocas fueron utilizados por poblaciones humanas durante diferentes períodos de la historia. Córdoba Turismo señala que el área posee varios <strong>aleros arqueológicos</strong> donde actualmente se realizan investigaciones. Esa combinación entre geología y evidencias de ocupación humana convierte a las cuevas en un patrimonio particularmente valioso.</p>
+                    </div>
+                    <div style="background: #fff; padding: 28px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-primary);">
+                        <h4 style="font-family: var(--font-display); color: var(--color-primary); font-size: 1.2rem; margin-bottom: 12px;"><i class="fas fa-monument" style="color: var(--color-secondary); margin-right: 10px;"></i>Alero Deodoro Roca</h4>
+                        <p style="font-size: 0.95rem;">Uno de los sitios arqueológicos más importantes del valle, nombrado en homenaje a <strong>Deodoro Roca</strong>, intelectual cordobés vinculado a la <strong>Reforma Universitaria de 1918</strong> con una relación importante con Ongamira. Investigado desde mediados del siglo XX por <strong>Aníbal Montes</strong> y <strong>Alberto Rex González</strong>, y estudiado luego por equipos de la <strong>UNC, CONICET e IDACOR</strong>.</p>
+                        <p style="margin-top: 10px; font-size: 0.95rem;">Las investigaciones permitieron estudiar: restos humanos, herramientas y artefactos de piedra, puntas de proyectil, restos de fauna y vegetales, fogones, morteros y diferentes capas arqueológicas. Un estudio mediante <strong>fotogrametría</strong> registró <strong>3 aleros rocosos con evidencias de ocupación, 8 pozos de excavación y 5 morteros</strong> en el valle: el territorio funciona como un <strong>archivo arqueológico</strong>.</p>
+                    </div>
+                    <div style="background: #fff; padding: 28px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-primary);">
+                        <h4 style="font-family: var(--font-display); color: var(--color-primary); font-size: 1.2rem; margin-bottom: 12px;"><i class="fas fa-users" style="color: var(--color-secondary); margin-right: 10px;"></i>Los pueblos que habitaron Ongamira</h4>
+                        <p style="font-size: 0.95rem;">La historia humana del valle es <strong>mucho más antigua</strong> que la llegada de los españoles. Las investigaciones identifican diferentes <strong>períodos de ocupación</strong> durante el Holoceno, estudiados por el <strong>Proyecto Arqueológico Ongamira</strong>, que analiza la relación entre sociedades humanas, animales, plantas y ambiente.</p>
+                        <p style="margin-top: 10px; font-size: 0.95rem;">Entre los conjuntos culturales regionales aparece <strong>Ayampitín</strong>, asociado a poblaciones cazadoras-recolectoras de gran antigüedad; posteriormente se desarrollaron poblaciones relacionadas con los pueblos que históricamente conocemos como <strong>comechingones</strong>.</p>
+                    </div>
+                    <div style="background: #fff; padding: 28px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-primary);">
+                        <h4 style="font-family: var(--font-display); color: var(--color-primary); font-size: 1.2rem; margin-bottom: 12px;"><i class="fas fa-mortar-pestle" style="color: var(--color-secondary); margin-right: 10px;"></i>Los morteros arqueológicos</h4>
+                        <p style="font-size: 0.95rem;">Cavidades realizadas sobre superficies rocosas que fueron utilizadas para <strong>procesar diferentes materiales</strong>, especialmente recursos vegetales. En Ongamira se han localizado morteros tanto sobre <strong>rocas móviles</strong> como directamente sobre la <strong>roca base</strong>, y las investigaciones actuales utilizan <strong>modelos tridimensionales</strong> para documentarlos y estudiar su distribución.</p>
+                        <p style="margin-top: 10px; font-size: 0.95rem; font-style: italic; color: var(--color-primary);"><i class="fas fa-quote-left" style="color: var(--color-secondary); margin-right: 8px;"></i>Una piedra aparentemente común puede contener evidencia de actividades humanas realizadas hace cientos o miles de años.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section-content" style="margin-top: 40px;">
+                <div style="background: linear-gradient(145deg, var(--color-primary) 0%, #0f2840 100%); color: #fff; padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow-lg); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(212, 163, 115, 0.25) 0%, transparent 70%);"></div>
+                    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px; position: relative;">
+                        <div style="width: 56px; height: 56px; flex-shrink: 0; background: rgba(212, 163, 115, 0.2); border: 2px solid var(--color-secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-secondary); font-size: 1.4rem;"><i class="fas fa-mountain"></i></div>
+                        <div>
+                            <h3 style="font-family: var(--font-display); font-size: 1.6rem; margin: 0;">Cerro Colchiquí <span style="font-size: 1rem; color: var(--color-secondary);">o Charalqueta</span></h3>
+                            <p style="margin: 0; color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;"><i class="fas fa-ruler-vertical" style="margin-right: 6px;"></i>&asymp; 1.575 msnm · Vista panorámica del valle</p>
+                        </div>
+                    </div>
+                    <p style="position: relative;">El Cerro Colchiquí es uno de los principales puntos paisajísticos del valle. Alcanza aproximadamente <strong>1.575 metros sobre el nivel del mar</strong> y ofrece una <strong>vista panorámica</strong> del Valle de Ongamira y las sierras circundantes, además de una fuerte dimensión histórica y cultural.</p>
+                    <div style="position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 24px;">
+                        <div style="background: rgba(255, 255, 255, 0.07); padding: 24px; border-radius: var(--radius); border-left: 4px solid rgba(212, 163, 115, 0.6);">
+                            <h4 style="font-family: var(--font-display); margin-bottom: 8px; font-size: 1.1rem;"><i class="fas fa-book-open" style="color: var(--color-secondary); margin-right: 8px;"></i>La leyenda</h4>
+                            <p style="font-size: 0.94rem; color: rgba(255, 255, 255, 0.85);">Durante mucho tiempo se difundió un relato según el cual los habitantes originarios de la región se habrían arrojado desde el cerro durante los enfrentamientos con los conquistadores españoles.</p>
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.07); padding: 24px; border-radius: var(--radius); border-left: 4px solid var(--color-secondary);">
+                            <h4 style="font-family: var(--font-display); margin-bottom: 8px; font-size: 1.1rem;"><i class="fas fa-flask" style="color: var(--color-secondary); margin-right: 8px;"></i>Lo que dice la ciencia</h4>
+                            <p style="font-size: 0.94rem; color: rgba(255, 255, 255, 0.85);">Las investigaciones arqueológicas recientes han <strong>cuestionado esa interpretación</strong>. El IDACOR explica que los restos humanos encontrados en Ongamira corresponden a personas que <strong>habitaban el lugar</strong>, y las evidencias disponibles <strong>no respaldan</strong> la interpretación tradicional de un suicidio colectivo.</p>
+                        </div>
+                    </div>
+                    <p style="position: relative; margin-top: 20px; padding: 16px 20px; background: rgba(212, 163, 115, 0.15); border-radius: var(--radius); font-size: 0.95rem;"><i class="fas fa-lightbulb" style="color: var(--color-secondary); margin-right: 8px;"></i><strong>Valor educativo:</strong> este caso muestra cómo la <strong>investigación científica puede revisar relatos históricos</strong> que durante mucho tiempo fueron considerados ciertos — la esencia del espíritu científico que inspira este proyecto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <p class="valle-sources"><i class="fas fa-book" style="margin-right: 8px;"></i>Fuentes y lecturas: <a href="https://turismo.cordoba.gov.ar/" target="_blank" rel="noopener noreferrer">Córdoba Turismo</a> · <a href="https://idacor.conicet.gov.ar/" target="_blank" rel="noopener noreferrer">IDACOR (UNC–CONICET)</a> · <a href="https://www.conicet.gov.ar/" target="_blank" rel="noopener noreferrer">CONICET</a> · <a href="https://www.unc.edu.ar/" target="_blank" rel="noopener noreferrer">Universidad Nacional de Córdoba</a> · Proyecto Arqueológico Ongamira</p>
+    <!-- ===== POTENCIAL TURÍSTICO (Criterio 1) ===== -->
+    <section id="potencial" class="section-light">
+        <div class="container fade-up">
+            <h2 class="section-title">Potencial Turístico de Ongamira</h2>
+            <p class="section-subtitle">Atributos naturales, culturales y productivos que hacen de este valle un destino emergente.</p>
+            <div class="section-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 24px;">
+                    <div style="background: #fff; padding: 24px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-left: 6px solid var(--color-secondary);">
+                        <i class="fas fa-mountain" style="color: var(--color-secondary); font-size: 2rem; margin-bottom: 12px; display: block;"></i>
+                        <h3 style="font-family: var(--font-display); color: var(--color-primary);">Geología y Paisaje</h3>
+                        <p>Formaciones de arenisca rojiza, cañones, cuevas naturales y miradores con vistas de 360°. Altitud de hasta 1.575 msnm (Cerro Colchiquí). Paisaje esculpido durante millones de años por la erosión del agua y del viento.</p>
+                    </div>
+                    <div style="background: #fff; padding: 24px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-left: 6px solid var(--color-secondary);">
+                        <i class="fas fa-tree" style="color: var(--color-secondary); font-size: 2rem; margin-bottom: 12px; display: block;"></i>
+                        <h3 style="font-family: var(--font-display); color: var(--color-primary);">Biodiversidad</h3>
+                        <p>Bosque serrano con especies autóctonas —quebracho colorado serrano, molle, algarrobo, coco serrano, tala y chañar—, avistamiento de cóndores andinos, zorros, gato montés, corzuela y plantas medicinales tradicionales.</p>
+                    </div>
+                    <div style="background: #fff; padding: 24px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-left: 6px solid var(--color-secondary);">
+                        <i class="fas fa-archway" style="color: var(--color-secondary); font-size: 2rem; margin-bottom: 12px; display: block;"></i>
+                        <h3 style="font-family: var(--font-display); color: var(--color-primary);">Patrimonio Cultural</h3>
+                        <p>Sitios arqueológicos con aleros como el Alero Deodoro Roca, morteros y cerámica de los pueblos que habitaron el valle, desde las poblaciones Ayampitín hasta los comechingones. Historia de miles de años.</p>
+                    </div>
+                    <div style="background: #fff; padding: 24px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-left: 6px solid var(--color-secondary);">
+                        <i class="fas fa-hand-sparkles" style="color: var(--color-secondary); font-size: 2rem; margin-bottom: 12px; display: block;"></i>
+                        <h3 style="font-family: var(--font-display); color: var(--color-primary);">Artesanías y Sabores</h3>
+                        <p>Talleres de cerámica ancestral, mieles, hierbas medicinales, panes caseros y conservas, todos con identidad local.</p>
+                    </div>
+                </div>
+                <p style="margin-top: 24px; text-align: center; font-weight: 500;">Estos atributos responden a las nuevas demandas del turista: naturaleza, autenticidad, seguridad y experiencias significativas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NUEVA: ESTRATEGIA DE MERCADO Y POSICIONAMIENTO (OP1) ===== -->
+    <section id="estrategia">
+        <div class="container fade-up">
+            <h2 class="section-title">Mercado y Estrategia de Posicionamiento</h2>
+            <p class="section-subtitle">Análisis del mercado actual, perfil del turista y plan de marketing para posicionar Ongamira.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 30px;">
+                <!-- Análisis de mercado -->
+                <div style="background: #fff; padding: 28px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-secondary);">
+                    <i class="fas fa-chart-line" style="color: var(--color-secondary); font-size: 2rem; margin-bottom: 12px; display: inline-block;"></i>
+                    <h3 style="font-family: var(--font-display); color: var(--color-primary);">Análisis de Mercado</h3>
+                    <p>El turismo de naturaleza y experiencias auténticas <strong>creció un 45% en Argentina</strong> en el período post-pandemia (fuente: sector turístico). Los viajeros priorizan destinos seguros, con baja densidad poblacional y conexión con la comunidad local. Ongamira reúne todas estas condiciones, posicionándose como un destino emergente con alta proyección.</p>
+                    <p style="margin-top: 12px;"><strong>Ventaja competitiva:</strong> A diferencia de otros valles cercanos (como Villa General Belgrano o La Cumbre), Ongamira ofrece un <strong>turismo de bajo impacto</strong> con un fuerte componente arqueológico y comunitario, sin masificación.</p>
+                </div>
+                <!-- Perfil del turista -->
+                <div style="background: #fff; padding: 28px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-secondary);">
+                    <i class="fas fa-user-friends" style="color: var(--color-secondary); font-size: 2rem; margin-bottom: 12px; display: inline-block;"></i>
+                    <h3 style="font-family: var(--font-display); color: var(--color-primary);">Perfil del Turista Ideal</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><i class="fas fa-check-circle" style="color: var(--color-secondary); margin-right: 10px;"></i> <strong>Jóvenes aventureros</strong> (25–40 años) que buscan desconexión digital y deportes de naturaleza.</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><i class="fas fa-check-circle" style="color: var(--color-secondary); margin-right: 10px;"></i> <strong>Familias con conciencia ecológica</strong> (con hijos) que valoran la educación ambiental y la seguridad.</li>
+                        <li style="padding: 8px 0;"><i class="fas fa-check-circle" style="color: var(--color-secondary); margin-right: 10px;"></i> <strong>Adultos mayores (50+)</strong> interesados en el patrimonio cultural, la historia y el bienestar.</li>
+                    </ul>
+                    <p style="margin-top: 12px;">Todos comparten el deseo de <strong>aprender, conectar y cuidar el entorno</strong>.</p>
+                </div>
+                <!-- Plan de Marketing -->
+                <div style="background: #fff; padding: 28px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-secondary);">
+                    <i class="fas fa-bullhorn" style="color: var(--color-secondary); font-size: 2rem; margin-bottom: 12px; display: inline-block;"></i>
+                    <h3 style="font-family: var(--font-display); color: var(--color-primary);">Plan de Marketing Digital</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><i class="fab fa-instagram" style="color: var(--color-secondary); margin-right: 10px;"></i> <strong>Instagram & TikTok:</strong> Contenido generado por guías locales con reels de paisajes, talleres y testimonios.</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><i class="fas fa-handshake" style="color: var(--color-secondary); margin-right: 10px;"></i> <strong>Alianzas:</strong> Colaboración con agencias de turismo alternativo y operadores de viajes de naturaleza.</li>
+                        <li style="padding: 8px 0;"><i class="fas fa-trophy" style="color: var(--color-secondary); margin-right: 10px;"></i> <strong>Ferias y eventos:</strong> Participación en ferias de turismo sustentable (ej. Feria Internacional de Turismo de Buenos Aires).</li>
+                    </ul>
+                </div>
+                <!-- Beneficios económicos -->
+                <div style="background: #fff; padding: 28px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-secondary);">
+                    <i class="fas fa-coins" style="color: var(--color-secondary); font-size: 2rem; margin-bottom: 12px; display: inline-block;"></i>
+                    <h3 style="font-family: var(--font-display); color: var(--color-primary);">Beneficios Económicos Locales</h3>
+                    <p>El proyecto generará <strong>15 empleos directos</strong> (guías, recepción, mantenimiento) y <strong>30 indirectos</strong> (gastronomía, hospedaje, transporte, artesanías). Se estima un <strong>aumento del ingreso familiar promedio en un 20%</strong> durante el primer año de operación.</p>
+                    <p style="margin-top: 12px;"><i class="fas fa-store" style="color: var(--color-secondary); margin-right: 8px;"></i> La feria de productos locales y la cooperativa EcoOngamira serán los motores de esta economía circular.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ESTADÍSTICAS (apoyo a fundamentación) ===== -->
+    <section class="section-dark">
+        <div class="container fade-up">
+            <h2 class="section-title">Ongamira en Datos</h2>
+            <p class="section-subtitle">Cifras que respaldan su potencial y el impacto del proyecto.</p>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="1575">0</div>
+                    <div class="stat-label">Metros de altitud (Cerro Colchiquí)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="5000">0</div>
+                    <div class="stat-label">Años de ocupación humana en el valle</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="12">0</div>
+                    <div class="stat-label">Atracciones naturales</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="25">0</div>
+                    <div class="stat-label">Guías comunitarios</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="45">0</div>
+                    <div class="stat-label">% de crecimiento del turismo de naturaleza</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EXPERIENCIAS VIVENCIALES (Criterio 4) ===== -->
+    <section id="experiencias">
+        <div class="container fade-up">
+            <h2 class="section-title">Experiencias Vivenciales</h2>
+            <p class="section-subtitle">Actividades que conectan al visitante con la naturaleza, la cultura y las tradiciones.</p>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-hiking"></i></div>
+                    <h3>Senderismo Interpretativo</h3>
+                    <p>Recorridos guiados por guardaparques comunitarios que explican geología, flora, fauna y leyendas locales. Incluye avistamiento de cóndores en el Mirador del Cóndor.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-paint-brush"></i></div>
+                    <h3>Talleres de Cerámica Ancestral</h3>
+                    <p>Aprende las técnicas milenarias de modelado y cocción con artesanas del valle. Cada participante crea su propia pieza con barro local.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-utensils"></i></div>
+                    <h3>Gastronomía Serrana</h3>
+                    <p>Degustación de mieles, hierbas medicinales, panes caseros y conservas, elaborados con recetas transmitidas por generaciones.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-star"></i></div>
+                    <h3>Noches de Astronomía Comechingona</h3>
+                    <p>Observación del cielo desde las cuevas, con relatos sobre la cosmovisión de los pueblos originarios y su relación con los astros.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== INNOVACIÓN Y CREATIVIDAD (Criterio 2) ===== -->
+    <section id="innovacion" class="section-light">
+        <div class="container fade-up">
+            <h2 class="section-title">Innovación y Tecnología</h2>
+            <p class="section-subtitle">Recursos digitales y estrategias de marca-pueblo para potenciar el destino.</p>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>App "Explora Ongamira"</h3>
+                    <p>Guía móvil con mapas offline, rutas de senderismo, avistamiento de aves, calendario de eventos y reserva de talleres. Incluye realidad aumentada para interpretar el arte rupestre.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-qrcode"></i></div>
+                    <h3>Señalética Inteligente</h3>
+                    <p>Carteles con códigos QR que despliegan contenido multimedia: audios con historias locales, videos de flora y fauna, y fichas técnicas.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-tag"></i></div>
+                    <h3>Marca-Pueblo "Ongamira Vive"</h3>
+                    <p>Identidad visual y narrativa que comunica los valores de autenticidad, sostenibilidad y hospitalidad. Aplicada a productos, redes y señalética.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-vr-cardboard"></i></div>
+                    <h3>Centro de Interpretación Inmersivo</h3>
+                    <p>Espacio físico con proyecciones, maquetas y experiencias sensoriales que introducen al visitante en la historia geológica y cultural del valle.</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px; font-weight: 500;">Estas herramientas posicionan a Ongamira como un destino de vanguardia, atractivo para turistas digitales y amantes de la naturaleza.</p>
+        </div>
+    </section>
+
+    <!-- ===== COMUNIDAD Y CULTURA (Fundamentación) ===== -->
+    <section id="comunidad">
+        <div class="container fade-up">
+            <h2 class="section-title">La Comunidad como Pilar</h2>
+            <p class="section-subtitle">El proyecto nace desde adentro, con la participación activa de los habitantes del valle.</p>
+            <div class="section-content">
+                <p>Ongamira cuenta con una red de familias que han preservado saberes artesanales, agrícolas y espirituales. El proyecto <strong>fortalece la economía local</strong> a través de:</p>
+                <ul style="list-style: none; display: grid; gap: 16px; margin: 20px 0;">
+                    <li style="background: #fff; padding: 16px 20px; border-radius: var(--radius); box-shadow: var(--shadow-sm);"><i class="fas fa-handshake" style="color: var(--color-secondary); margin-right: 10px;"></i> <strong>Cooperativa EcoOngamira</strong> – agrupa a guías, artesanos y productores.</li>
+                    <li style="background: #fff; padding: 16px 20px; border-radius: var(--radius); box-shadow: var(--shadow-sm);"><i class="fas fa-graduation-cap" style="color: var(--color-secondary); margin-right: 10px;"></i> <strong>Programa de Guías Comunitarios</strong> – formación de jóvenes como embajadores culturales.</li>
+                    <li style="background: #fff; padding: 16px 20px; border-radius: var(--radius); box-shadow: var(--shadow-sm);"><i class="fas fa-store" style="color: var(--color-secondary); margin-right: 10px;"></i> <strong>Feria de Productos Locales</strong> – comercialización de miel, cerámica, tejidos y conservas.</li>
+                </ul>
+                <div class="testimonial">
+                    <p>"Mis abuelos me contaban que estas rocas eran guardianes. Hoy, ver que los jóvenes se forman para guiar a los visitantes y compartir nuestra historia sin dañar el valle, me llena de esperanza. Ongamira es nuestra vida, y queremos compartirla de la manera correcta."</p>
+                    <cite>— Clara Mamaní, Artesana y Guardiana de Saberes</cite>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SOSTENIBILIDAD Y ODS (Criterio 5) ===== -->
+    <section id="ods-11" class="section-dark">
+        <div class="container fade-up">
+            <h2 class="section-title">Compromiso con la Sostenibilidad</h2>
+            <p class="section-subtitle">Nuestra propuesta se alinea con los Objetivos de Desarrollo Sostenible, especialmente el ODS 11.</p>
+            <div class="ods-content">
+                <div class="ods-icon">ODS 11</div>
+                <div>
+                    <h3><a href="https://www.argentina.gob.ar/habitat/objetivos-de-desarrollo-sostenible/ods-11-ciudades-y-comunidades-sostenibles" target="_blank" rel="noopener noreferrer">Ciudades y Comunidades Sostenibles</a></h3>
+                    <p>El proyecto garantiza la protección del patrimonio cultural y natural, promueve el turismo de bajo impacto, genera empleo digno y fortalece la identidad local. Además, contribuye a los ODS 8 (Trabajo decente), 12 (Producción responsable) y 15 (Vida de ecosistemas terrestres).</p>
+                    <ul style="margin-top: 12px; list-style: none; display: flex; flex-wrap: wrap; gap: 12px;">
+                        <li style="background: rgba(255,255,255,0.1); padding: 6px 16px; border-radius: 40px; font-size: 0.9rem;"><i class="fas fa-check-circle" style="color: var(--color-secondary);"></i> Gestión de residuos cero</li>
+                        <li style="background: rgba(255,255,255,0.1); padding: 6px 16px; border-radius: 40px; font-size: 0.9rem;"><i class="fas fa-check-circle" style="color: var(--color-secondary);"></i> Energías renovables (paneles solares)</li>
+                        <li style="background: rgba(255,255,255,0.1); padding: 6px 16px; border-radius: 40px; font-size: 0.9rem;"><i class="fas fa-check-circle" style="color: var(--color-secondary);"></i> Capacidad de carga limitada</li>
+                        <li style="background: rgba(255,255,255,0.1); padding: 6px 16px; border-radius: 40px; font-size: 0.9rem;"><i class="fas fa-check-circle" style="color: var(--color-secondary);"></i> Reforestación con especies nativas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== VIABILIDAD (Criterio 7) con PRESUPUESTO DETALLADO ===== -->
+    <section id="viabilidad" class="section-light">
+        <div class="container fade-up">
+            <h2 class="section-title">Plan de Implementación y Presupuesto</h2>
+            <p class="section-subtitle">Una hoja de ruta realista con cronograma, hitos y costos desglosados.</p>
+
+            <!-- Cronograma -->
+            <h3 style="font-family: var(--font-display); color: var(--color-primary); text-align: center; margin-bottom: 20px;">Cronograma de Hitos</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 24px; margin-bottom: 40px;">
+                <div style="background: #fff; padding: 24px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-secondary);">
+                    <h4 style="font-family: var(--font-display); color: var(--color-primary);"><i class="fas fa-flag" style="color: var(--color-secondary); margin-right: 8px;"></i> Fase 1 (Marzo–Agosto 2026)</h4>
+                    <ul style="list-style: none; padding: 0; margin-top: 12px;">
+                        <li style="padding: 6px 0; border-bottom: 1px solid #f0f0f0;"><i class="fas fa-check-circle" style="color: var(--color-secondary);"></i> Centro de Interpretación</li>
+                        <li style="padding: 6px 0; border-bottom: 1px solid #f0f0f0;"><i class="fas fa-check-circle" style="color: var(--color-secondary);"></i> Señalética inteligente</li>
+                        <li style="padding: 6px 0;"><i class="fas fa-check-circle" style="color: var(--color-secondary);"></i> Capacitación de guías (primer cohorte)</li>
+                    </ul>
+                </div>
+                <div style="background: #fff; padding: 24px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-secondary);">
+                    <h4 style="font-family: var(--font-display); color: var(--color-primary);"><i class="fas fa-rocket" style="color: var(--color-secondary); margin-right: 8px;"></i> Fase 2 (Septiembre 2026 – Febrero 2027)</h4>
+                    <ul style="list-style: none; padding: 0; margin-top: 12px;">
+                        <li style="padding: 6px 0; border-bottom: 1px solid #f0f0f0;"><i class="fas fa-check-circle" style="color: var(--color-secondary);"></i> Lanzamiento de App (versión beta)</li>
+                        <li style="padding: 6px 0; border-bottom: 1px solid #f0f0f0;"><i class="fas fa-check-circle" style="color: var(--color-secondary);"></i> Primer Festival del Valle Sagrado</li>
+                        <li style="padding: 6px 0;"><i class="fas fa-check-circle" style="color: var(--color-secondary);"></i> Alianzas con operadores turísticos</li>
+                    </ul>
+                </div>
+                <div style="background: #fff; padding: 24px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-secondary);">
+                    <h4 style="font-family: var(--font-display); color: var(--color-primary);"><i class="fas fa-seedling" style="color: var(--color-secondary); margin-right: 8px;"></i> Fase 3 (Marzo 2027 en adelante)</h4>
+                    <ul style="list-style: none; padding: 0; margin-top: 12px;">
+                        <li style="padding: 6px 0; border-bottom: 1px solid #f0f0f0;"><i class="fas fa-check-circle" style="color: var(--color-secondary);"></i> Certificación de sostenibilidad</li>
+                        <li style="padding: 6px 0; border-bottom: 1px solid #f0f0f0;"><i class="fas fa-check-circle" style="color: var(--color-secondary);"></i> Programa de voluntariado internacional</li>
+                        <li style="padding: 6px 0;"><i class="fas fa-check-circle" style="color: var(--color-secondary);"></i> Observatorio de turismo comunitario</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Presupuesto Detallado -->
+            <h3 style="font-family: var(--font-display); color: var(--color-primary); text-align: center; margin-bottom: 20px;">Presupuesto Detallado</h3>
+            <div style="overflow-x: auto;">
+                <table class="budget-table">
+                    <thead>
+                        <tr>
+                            <th>Ítem</th>
+                            <th>Descripción</th>
+                            <th>Costo (ARS)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Centro de Interpretación</strong></td>
+                            <td>Construcción, equipamiento interactivo, proyecciones y maquetas.</td>
+                            <td>$4.500.000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Desarrollo de App</strong></td>
+                            <td>Diseño, programación, realidad aumentada, mapas offline y backend.</td>
+                            <td>$2.000.000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Señalética Inteligente</strong></td>
+                            <td>Carteles físicos con códigos QR, contenido multimedia y mantenimiento.</td>
+                            <td>$800.000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capacitación de Guías</strong></td>
+                            <td>Programa formativo (6 meses) para 25 guías comunitarios.</td>
+                            <td>$1.200.000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Infraestructura Básica</strong></td>
+                            <td>Senderos, miradores, cartelería general, bancos y áreas de descanso.</td>
+                            <td>$2.500.000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Marketing y Lanzamiento</strong></td>
+                            <td>Campaña en redes, alianzas, ferias y material promocional.</td>
+                            <td>$1.000.000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total</strong></td>
+                            <td><strong>Inversión estimada</strong></td>
+                            <td><strong>$12.000.000</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="margin-top: 20px; text-align: center; font-weight: 500;">Financiamiento mixto: <strong>Gobierno Provincial (40%), Municipalidad de Punilla (30%), Inversión privada y crowdfunding (30%)</strong>.</p>
+        </div>
+    </section>
+
+    <!-- ===== EQUIPO ===== -->
+    <section id="equipo">
+        <div class="container fade-up">
+            <h2 class="section-title">Nuestro Equipo</h2>
+            <p class="section-subtitle">Tres estudiantes del IPET N°66, comprometidos con la innovación turística.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 24px; text-align: center; max-width: 800px; margin: 0 auto;">
+                <div style="background: #fff; padding: 24px; border-radius: var(--radius); box-shadow: var(--shadow-sm);">
+                    <i class="fas fa-user-graduate" style="font-size: 2.5rem; color: var(--color-secondary);"></i>
+                    <h4 style="margin: 12px 0 4px; font-family: var(--font-display);">Alejandro Canton</h4>
+                    <p style="font-size: 0.9rem; color: var(--color-text-light);">Investigación y contenido</p>
+                </div>
+                <div style="background: #fff; padding: 24px; border-radius: var(--radius); box-shadow: var(--shadow-sm);">
+                    <i class="fas fa-user-graduate" style="font-size: 2.5rem; color: var(--color-secondary);"></i>
+                    <h4 style="margin: 12px 0 4px; font-family: var(--font-display);">Elian Lencianas</h4>
+                    <p style="font-size: 0.9rem; color: var(--color-text-light);">Diseño y experiencia de usuario</p>
+                </div>
+                <div style="background: #fff; padding: 24px; border-radius: var(--radius); box-shadow: var(--shadow-sm);">
+                    <i class="fas fa-user-graduate" style="font-size: 2.5rem; color: var(--color-secondary);"></i>
+                    <h4 style="margin: 12px 0 4px; font-family: var(--font-display);">Benjamin Mieres</h4>
+                    <p style="font-size: 0.9rem; color: var(--color-text-light);">Sostenibilidad y tecnología</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 20px;"><strong>Institución:</strong> IPET N°66 Dr. José A. Balseiro · <strong>Competencia:</strong> Reinventar el Turismo · ONIET 2026</p>
+        </div>
+    </section>
+
+    <!-- ===== GALERÍA ===== -->
+    <section class="section-light">
+        <div class="container fade-up">
+            <h2 class="section-title">Galería del Valle</h2>
+            <p class="section-subtitle">Imágenes reales del Valle de Ongamira: sus cerros rojos, cuevas ancestrales y senderos.</p>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Valle%20de%20Ongamira%20-%20Oeste.jpg?width=800" alt="Valle de Ongamira, sector Oeste, Córdoba" loading="lazy" referrerpolicy="no-referrer" />
+                    <div class="gallery-overlay">Valle de Ongamira – Oeste</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cueva%20del%20indio,%20Cuevas%20de%20Ongamira.jpg?width=800" alt="Cueva del Indio, Cuevas de Ongamira" loading="lazy" referrerpolicy="no-referrer" />
+                    <div class="gallery-overlay">Cueva del Indio</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Entrada%20Cuevas%20de%20Ongamira.jpg?width=800" alt="Entrada a las Cuevas de Ongamira" loading="lazy" referrerpolicy="no-referrer" />
+                    <div class="gallery-overlay">Entrada a las Grutas</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cuevas%20de%20Ongamira,%20caminata.jpg?width=800" alt="Caminata entre paredones en Cuevas de Ongamira" loading="lazy" referrerpolicy="no-referrer" />
+                    <div class="gallery-overlay">Sendero entre paredones</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cerro%20Calchequ%C3%ADn.jpg?width=800" alt="Cerro Colchiquí (Calchequín), Ongamira" loading="lazy" referrerpolicy="no-referrer" />
+                    <div class="gallery-overlay">Cerro Colchiquí</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Vista%20General,%20Cuevas%20de%20Ongamira,%20Cordoba.jpg?width=800" alt="Vista general del Valle de Ongamira, Córdoba" loading="lazy" referrerpolicy="no-referrer" />
+                    <div class="gallery-overlay">Vista general del Valle</div>
+                </div>
+            </div>
+            <p style="text-align:center; margin-top:14px; font-size:0.85rem; color:var(--color-text-light);">Fotografías: Wikimedia Commons · Categoría «Cuevas de Ongamira» (licencias CC BY-SA). Para ver autoría de cada foto, hacé clic en la imagen.</p>
+        </div>
+    </section>
+
+    <!-- ===== MAPA ===== -->
+    <section style="padding: 40px 0; background: var(--color-bg);">
+        <div class="container fade-up">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <span style="font-family: var(--font-display); font-size: 1.4rem; color: var(--color-primary);">📍 Ubicación del Valle</span>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 16px;">
+                    <span style="background: #fff; padding: 8px 18px; border-radius: 40px; font-size: 0.9rem; font-weight: 600; color: var(--color-primary); box-shadow: var(--shadow-sm);"><i class="fas fa-map-marker-alt" style="color: var(--color-secondary); margin-right: 8px;"></i>Departamento Ischilín · Norte del Valle de Punilla</span>
+                    <span style="background: #fff; padding: 8px 18px; border-radius: 40px; font-size: 0.9rem; font-weight: 600; color: var(--color-primary); box-shadow: var(--shadow-sm);"><i class="fas fa-road" style="color: var(--color-secondary); margin-right: 8px;"></i>120 km de la ciudad de Córdoba</span>
+                    <span style="background: #fff; padding: 8px 18px; border-radius: 40px; font-size: 0.9rem; font-weight: 600; color: var(--color-primary); box-shadow: var(--shadow-sm);"><i class="fas fa-route" style="color: var(--color-secondary); margin-right: 8px;"></i>25 km de Capilla del Monte · 17 km desde la RN 38</span>
+                </div>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54739.17831023682!2d-64.41902791809223!3d-31.20523639525788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432a7c0e9a3f7d1%3A0x6e5b3e2f8c4d7a0b!2sOngamira%2C%20C%C3%B3rdoba!5e0!3m2!1ses!2sar!4v1712345678901!5m2!1ses!2sar" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa de Ongamira"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACTO ===== -->
+    <section id="contacto">
+        <div class="container fade-up">
+            <h2 class="section-title">Contacto</h2>
+            <p class="section-subtitle">¿Quieres saber más o colaborar? Escríbenos.</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-school"></i>
+                    <div>
+                        <p><strong>Institución</strong></p>
+                        <p>IPET N°66 Dr. José A. Balseiro</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-pin"></i>
+                    <div>
+                        <p><strong>Dirección</strong></p>
+                        <p>Avenida Hipolito Yrigoyen 258, B° Nueva Córdoba, Córdoba Capital</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <p><strong>Teléfono</strong></p>
+                        <p>351-4332330</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <p><strong>Correos</strong></p>
+                        <p>ipem66@gmail.com</p>
+                        <p style="font-size: 0.9rem;">nicolasagustin_14@hotmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="main-footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3><i class="fas fa-leaf" style="margin-right: 8px; color: var(--color-secondary);"></i> Ongamira Vive</h3>
+                    <p style="margin-top: 8px; font-size: 0.95rem;">Propuesta para la competencia "Reinventar el Turismo" · ONIET 2026. Desarrollada por estudiantes del IPET N°66.</p>
+                </div>
+                <div>
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#valle">El Valle</a></li>
+                        <li><a href="#potencial">Potencial</a></li>
+                        <li><a href="#estrategia">Estrategia</a></li>
+                        <li><a href="#experiencias">Experiencias</a></li>
+                        <li><a href="#innovacion">Innovación</a></li>
+                        <li><a href="#ods-11">ODS 11</a></li>
+                        <li><a href="#viabilidad">Viabilidad</a></li>
+                        <li><a href="#equipo">Equipo</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Recursos</h3>
+                    <ul>
+                        <li><a href="https://docs.google.com/document/d/1jkp5JN7t2CStgyx8ZzdsEArFRdNMDvWs54WYeRR81Ho/edit?usp=sharing" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-alt" style="margin-right: 6px;"></i> Informe completo (PDF)</a></li>
+                        <li><a href="#presentacion" onclick="alert('Presentación disponible en el Sistema ONIET.');">Presentación</a></li>
+                        <li><a href="https://www.argentina.gob.ar/habitat/objetivos-de-desarrollo-sostenible/ods-11-ciudades-y-comunidades-sostenibles" target="_blank">ODS 11</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Gobierno de Córdoba</h3>
+                    <p style="font-size: 0.95rem;">Este proyecto se enmarca en las políticas de desarrollo sustentable de la provincia.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 IPET N°66 · Proyecto Ongamira Vive · Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== BACK TO TOP ===== -->
+    <button class="back-to-top" aria-label="Volver arriba" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // ---- MENU TOGGLE ----
+            const toggle = document.querySelector('.menu-toggle');
+            const navUl = document.querySelector('.main-nav ul');
+            toggle.addEventListener('click', function() {
+                const expanded = this.getAttribute('aria-expanded') === 'true' ? false : true;
+                this.setAttribute('aria-expanded', expanded);
+                navUl.classList.toggle('active');
+                this.innerHTML = expanded ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+
+            // ---- NAV LINKS SMOOTH SCROLL ----
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        navUl.classList.remove('active');
+                        toggle.setAttribute('aria-expanded', 'false');
+                        toggle.innerHTML = '<i class="fas fa-bars"></i>';
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                });
+            });
+
+            // ---- SCROLL ACTIVE LINK ----
+            const sections = document.querySelectorAll('section');
+            window.addEventListener('scroll', function() {
+                let current = '';
+                sections.forEach(section => {
+                    const top = section.offsetTop - 100;
+                    if (window.scrollY >= top) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').slice(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+
+                // ---- HEADER SHADOW ----
+                const header = document.querySelector('.main-header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+
+                // ---- BACK TO TOP ----
+                const btn = document.getElementById('backToTop');
+                if (window.scrollY > 400) {
+                    btn.classList.add('visible');
+                } else {
+                    btn.classList.remove('visible');
+                }
+            });
+
+            // ---- BACK TO TOP CLICK ----
+            document.getElementById('backToTop').addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ---- STATS COUNTER ANIMATION ----
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const observerStats = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const count = parseInt(el.getAttribute('data-count'));
+                        let current = 0;
+                        const increment = Math.ceil(count / 60);
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= count) {
+                                el.textContent = count;
+                                clearInterval(timer);
+                            } else {
+                                el.textContent = current;
+                            }
+                        }, 25);
+                        observerStats.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.5 });
+            statNumbers.forEach(num => observerStats.observe(num));
+
+            // ---- FADE-UP ON SCROLL ----
+            const fadeElements = document.querySelectorAll('.fade-up');
+            const observerFade = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observerFade.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            fadeElements.forEach(el => observerFade.observe(el));
+
+        });
+    </script>
+
+</body>
+</html>
